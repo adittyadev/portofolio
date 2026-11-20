@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio | Sistem Informasi</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg-primary: #0d1b2a;
+        --bg-secondary: #112240;
+        --bg-card: #162b4d;
+        --accent: #e8a020;
+        --accent-soft: #f5c056;
+        --text-primary: #ffffff;
+        --text-secondary: #94a3b8;
+        --text-muted: #64748b;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: "Rajdhani", sans-serif;
+        line-height: 1.6;
+      }
+
+      section {
+        padding: 80px 8%;
+        scroll-margin-top: 20px;
+      }
+
+      h2 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 42px;
+        letter-spacing: 3px;
+        margin-bottom: 50px;
+      }
+
+      h2 span {
+        color: var(--accent);
+      }
+
+      /* ===== NAVBAR (FLOATING PILL) ===== */
+      .navbar {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 6px;
+        background: rgba(17, 34, 64, 0.72);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(232, 160, 32, 0.22);
+        border-radius: 999px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        max-width: calc(100vw - 24px);
+        overflow-x: auto;
+        scrollbar-width: none;
+        transition:
+          background 0.3s,
+          box-shadow 0.3s;
+      }
+
+      .navbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .navbar.scrolled {
+        background: rgba(13, 27, 42, 0.88);
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+      }
+
+      .navbar a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        padding: 8px 20px;
+        border-radius: 999px;
+        white-space: nowrap;
+        transition:
+          color 0.25s,
+          background 0.25s;
+      }
+
+      .navbar a:hover {
+        color: var(--text-primary);
+      }
+
+      .navbar a.active {
+        background: var(--accent);
+        color: #000;
+      }
+
+      .navbar a:focus-visible {
+        outline: 2px solid var(--accent-soft);
+        outline-offset: 2px;
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 90px;
+        min-height: 100vh;
+        padding: 110px 8% 80px;
+        background: radial-gradient(
+          ellipse at right center,
+          #1a3a5c 0%,
+          var(--bg-primary) 65%
+        );
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          rgba(232, 160, 32, 0.2) 1px,
+          transparent 1px
+        );
+        background-size: 28px 28px;
+        -webkit-mask-image: radial-gradient(
+          ellipse at 70% 50%,
+          #000 0%,
+          transparent 70%
+        );
+        mask-image: radial-gradient(
+          ellipse at 70% 50%,
+          #000 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .hero-text,
+      .hero-photo {
+        position: relative;
+      }
+
+      .hero-text {
+        max-width: 620px;
+      }
+
+      .hero-text h1 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 72px;
+        letter-spacing: 3px;
+        margin-bottom: 8px;
+        line-height: 1.02;
+      }
+
+      .hero-text h1 span {
+        color: var(--accent);
+        display: block;
+      }
+
+      .hero-role {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 28px;
+        letter-spacing: 3px;
+        color: var(--accent-soft);
+        min-height: 40px;
+        margin-bottom: 18px;
+      }
+
+      .hero-role .cursor {
+        display: inline-block;
+        width: 3px;
+        height: 24px;
+        margin-left: 4px;
+        background: var(--accent);
+        vertical-align: -3px;
+        animation: blink 1s steps(1) infinite;
+      }
+
+      .hero-text p {
+        max-width: 560px;
+        color: var(--text-secondary);
+        font-size: 18px;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 32px;
+      }
+
+      .btn {
+        text-decoration: none;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 18px;
+        letter-spacing: 2px;
+        padding: 12px 30px;
+        border-radius: 999px;
+        transition: 0.3s;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+        color: #000;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(232, 160, 32, 0.35);
+      }
+
+      .btn-outline {
+        border: 1.5px solid var(--accent);
+        color: var(--text-primary);
+      }
+
+      .btn-outline:hover {
+        background: rgba(232, 160, 32, 0.14);
+        transform: translateY(-2px);
+      }
+
+      .btn:focus-visible {
+        outline: 2px solid var(--accent-soft);
+        outline-offset: 3px;
+      }
+
+      .hero-photo {
+        flex-shrink: 0;
+        width: 320px;
+        height: 380px;
+      }
+
+      .hero-photo::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 2px solid var(--accent);
+        border-radius: 26px;
+        transform: translate(18px, 18px);
+      }
+
+      .hero-photo img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 26px;
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+      }
+
+      .hero-chip {
+        position: absolute;
+        z-index: 2;
+        padding: 6px 16px;
+        border-radius: 999px;
+        background: rgba(17, 34, 64, 0.88);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(232, 160, 32, 0.35);
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      }
+
+      .chip-1 {
+        top: 28px;
+        left: -48px;
+      }
+      .chip-2 {
+        top: 150px;
+        right: -52px;
+      }
+      .chip-3 {
+        bottom: 56px;
+        left: -40px;
+      }
+
+      /* satu animasi masuk saat halaman dibuka */
+      .hero-text > *,
+      .hero-photo {
+        animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+      .hero-text h1 {
+        animation-delay: 0.1s;
+      }
+      .hero-role {
+        animation-delay: 0.25s;
+      }
+      .hero-text p {
+        animation-delay: 0.4s;
+      }
+      .hero-cta {
+        animation-delay: 0.55s;
+      }
+      .hero-photo {
+        animation-delay: 0.3s;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* ===== SKILLS ===== */
+      .skills-section {
+        background: #0a1628;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+      }
+
+      /* ===== EXPERIENCE ===== */
+      .exp-section {
+        background: var(--bg-primary);
+      }
+
+      .exp-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 20px;
+      }
+
+      /* SKILLS */
+      .skill-group {
+        background: var(--bg-card);
+        border-radius: 14px;
+        padding: 22px 26px;
+        border: 1px solid rgba(232, 160, 32, 0.1);
+        transition: 0.3s;
+      }
+
+      .skill-group:hover {
+        border-color: var(--accent);
+      }
+
+      .skill-group h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20px;
+        letter-spacing: 2px;
+        color: var(--accent);
+        margin-bottom: 12px;
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .skill-tag {
+        padding: 6px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(232, 160, 32, 0.25);
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: var(--text-primary);
+        transition: 0.25s;
+      }
+
+      .skill-tag:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #000;
+      }
+
+      /* EXPERIENCE */
+      .exp-card {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        background: var(--bg-card);
+        border-radius: 14px;
+        padding: 22px 26px;
+        border: 1px solid rgba(232, 160, 32, 0.1);
+        transition: 0.3s;
+      }
+
+      .exp-card:hover {
+        border-color: var(--accent);
+        transform: translateX(6px);
+      }
+
+      .exp-icon {
+        width: 70px;
+        height: 70px;
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .exp-icon svg {
+        width: 42px;
+        height: 42px;
+        fill: white;
+        opacity: 0.85;
+      }
+
+      .exp-details h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 22px;
+        letter-spacing: 2px;
+        color: var(--accent);
+        margin-bottom: 4px;
+      }
+
+      .exp-details .company {
+        font-size: 15px;
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+
+      .exp-details .period {
+        font-size: 14px;
+        color: var(--text-secondary);
+      }
+
+      /* ===== PROJECT ===== */
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        background: linear-gradient(160deg, #112240, #0d1b2a);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(232, 160, 32, 0.12);
+        transition: 0.35s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--accent);
+        box-shadow: 0 20px 40px rgba(232, 160, 32, 0.12);
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+      }
+
+      .project-content {
+        padding: 24px;
+      }
+
+      .project-content h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 22px;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+      }
+
+      .project-content p {
+        font-size: 15px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      /* ===== CONTACT ===== */
+      .contact-section {
+        background: radial-gradient(circle at left, #1a3a5c, var(--bg-primary));
+      }
+
+      .contact-card {
+        max-width: 980px;
+        margin: auto;
+        background: var(--bg-secondary);
+        border-radius: 20px;
+        padding: 44px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 44px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      }
+
+      .contact-info small {
+        color: var(--accent);
+        letter-spacing: 3px;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      .contact-info h3 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 32px;
+        letter-spacing: 2px;
+        margin: 12px 0 14px;
+      }
+
+      .contact-info p {
+        color: var(--text-secondary);
+        margin-bottom: 22px;
+        font-size: 15px;
+      }
+
+      .contact-item {
+        margin-bottom: 10px;
+        font-size: 15px;
+      }
+
+      .contact-social {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .contact-social a {
+        text-decoration: none;
+        padding: 8px 18px;
+        border-radius: 30px;
+        background: rgba(232, 160, 32, 0.12);
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: 0.3s;
+      }
+
+      .contact-social a:hover {
+        background: var(--accent);
+        color: #000;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        padding: 14px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        outline: none;
+        background: #081b33;
+        color: white;
+        font-family: "Rajdhani", sans-serif;
+        font-size: 15px;
+      }
+
+      .contact-form input::placeholder,
+      .contact-form textarea::placeholder {
+        color: #64748b;
+      }
+
+      .contact-form button {
+        background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+        border: none;
+        padding: 14px;
+        border-radius: 30px;
+        color: #000;
+        font-weight: 700;
+        font-size: 16px;
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .contact-form button:hover {
+        opacity: 0.88;
+        transform: scale(1.02);
+      }
+
+      /* ===== GALLERY ===== */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .gallery img {
+        width: 100%;
+        border-radius: 16px;
+        object-fit: cover;
+        border: 2px solid rgba(232, 160, 32, 0.12);
+        transition: 0.3s;
+      }
+
+      .gallery img:hover {
+        border-color: var(--accent);
+        transform: scale(1.02);
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: #060e1a;
+        color: var(--text-muted);
+        text-align: center;
+        padding: 28px;
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+
+      /* ===== SCROLL TO TOP ===== */
+      #scrollTop {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: #000;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        box-shadow: 0 6px 20px rgba(232, 160, 32, 0.4);
+        transition: 0.3s;
+        z-index: 999;
+      }
+
+      #scrollTop.show {
+        display: flex;
+      }
+      #scrollTop:hover {
+        transform: scale(1.1);
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column-reverse;
+          gap: 56px;
+          text-align: center;
+          padding-top: 120px;
+        }
+        .hero-text h1 {
+          font-size: 52px;
+        }
+        .hero-text p {
+          margin: 0 auto;
+        }
+        .hero-cta {
+          justify-content: center;
+        }
+        .hero-photo {
+          width: 240px;
+          height: 290px;
+        }
+        .chip-1 {
+          left: -20px;
+        }
+        .chip-2 {
+          right: -24px;
+        }
+        .chip-3 {
+          left: -16px;
+        }
+        .exp-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact-card {
+          grid-template-columns: 1fr;
+        }
+        .navbar {
+          top: 14px;
+        }
+        .navbar a {
+          font-size: 14px;
+          padding: 7px 14px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .hero-text > *,
+        .hero-photo,
+        .hero-role .cursor {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar" aria-label="Navigasi utama">
+      <a href="#home" class="active">Home</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Project</a>
+      <a href="#contact">Contact</a>
+      <a href="#activities">Activities</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <h1>Halo, Saya <span>Adittya Alyandra</span></h1>
+        <p>
+          Lulusan S1 Sistem Informasi dari Universitas Jayanusa dengan minat
+          pada pemrograman, pengembangan aplikasi berbasis web dan mobile,
+          pengolahan data, serta perancangan database. Memiliki pengalaman
+          mengembangkan proyek akademik menggunakan PHP, CodeIgniter 4, Laravel,
+          Flutter, dan MySQL, termasuk sistem informasi Petshop BigBoss berbasis
+          web. Teliti, disiplin, bertanggung jawab, mampu bekerja sama dalam
+          tim, dan memiliki kemauan untuk terus belajar serta mengembangkan
+          solusi sistem informasi yang bermanfaat.
+        </p>
+      </div>
+      <div class="hero-photo">
+        <img src="adit.png" alt="Foto Adittya Alyandra" />
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="skills-section" id="skills">
+      <h2>My <span>Skills</span></h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Frontend</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Backend</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">Laravel</span>
+            <span class="skill-tag">CodeIgniter 4</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Mobile</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Flutter</span>
+            <span class="skill-tag">React Native</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Database</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Perancangan Database</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Design</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">UI/UX Design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="exp-section" id="experience">
+      <h2>My <span>Experiences</span></h2>
+      <div class="exp-grid">
+        <div class="exp-card">
+          <div class="exp-icon">
+            <!-- Magang icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="18" r="10" />
+              <path d="M12 54c0-11 9-20 20-20s20 9 20 20" />
+              <path
+                d="M20 12l12-6 12 6-12 6z"
+                fill="white"
+                stroke="#162b4d"
+                stroke-width="1.5"
+              />
+            </svg>
+          </div>
+          <div class="exp-details">
+            <h3>Magang / PKL</h3>
+            <div class="company">BPBD Provinsi Sumatera Barat</div>
+            <div class="period">2026</div>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-icon">
+            <!-- Pengalaman kerja icon -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="18" r="10" />
+              <path d="M12 54c0-11 9-20 20-20s20 9 20 20" />
+              <rect
+                x="24"
+                y="40"
+                width="16"
+                height="12"
+                rx="2"
+                fill="none"
+                stroke="white"
+                stroke-width="2.5"
+              />
+              <path
+                d="M28 40v-3h8v3"
+                fill="none"
+                stroke="white"
+                stroke-width="2.5"
+              />
+            </svg>
+          </div>
+          <div class="exp-details">
+            <h3>Karyawan Umum</h3>
+            <div class="company">Petshop Bigboss</div>
+            <div class="period">2022 – 2022</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT -->
+    <section id="projects" style="background: #0a1628">
+      <h2>Project <span>Documentation</span></h2>
+      <div class="projects">
+        <div class="project-card">
+          <img src="sibigbos.jpg" alt="Petshop Bigboss" />
+          <div class="project-content">
+            <h3>Petshop Bigboss</h3>
+            <p>
+              Sistem informasi manajemen petshop berbasis web untuk mengelola
+              data produk, stok, layanan, transaksi penjualan, dan laporan
+              menggunakan CodeIgniter 4 dan MySQL.
+            </p>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="ayam rujak.jpg" alt="Ayam Rujak" />
+          <div class="project-content">
+            <h3>Ayam Rujak</h3>
+            <p>
+              Website pemesanan makanan untuk Ayam Rujak dengan daftar menu,
+              keranjang pesanan, dan pengelolaan transaksi oleh admin.
+            </p>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="badminton.jpg" alt="Lapangan Badminton" />
+          <div class="project-content">
+            <h3>Lapangan Badminton</h3>
+            <p>
+              Sistem manajemen lapangan badminton untuk pemesanan jadwal,
+              pengelolaan pembayaran, dan laporan penggunaan lapangan.
+            </p>
+          </div>
+        </div>
+        <div class="project-card">
+          <img
+            src="https://via.placeholder.com/600x400/112240/e8a020?text=Project+4"
+            alt="Project 4"
+          />
+          <div class="project-content">
+            <h3>Project 4</h3>
+            <p>Deskripsi project keempat kamu bisa diisi di sini.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+      <h2>Let's <span>Connect</span></h2>
+      <div class="contact-card">
+        <div class="contact-info">
+          <small>LET'S TALK</small>
+          <h3>Discuss Your Project</h3>
+          <p>
+            Interested in collaborating, discussing projects, or just
+            connecting? Please contact me.
+          </p>
+          <div class="contact-item">📧 email@email.com</div>
+          <div class="contact-item">📞 +62 812-xxxx-xxxx</div>
+          <div class="contact-social">
+            <a href="https://www.instagram.com/adittyaalyndra_/">Instagram</a>
+            <a href="https://www.linkedin.com/in/adittya-alyandra">LinkedIn</a>
+            <a href="https://github.com/adittyadev">GitHub</a>
+          </div>
+        </div>
+        <form class="contact-form">
+          <input type="text" placeholder="Nama Lengkap" required />
+          <input type="email" placeholder="Email" required />
+          <input type="text" placeholder="Subjek" />
+          <textarea rows="4" placeholder="Pesan"></textarea>
+          <button type="submit">KIRIM PESAN</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="activities" style="background: #0a1628">
+      <h2>Achievements <span>&</span> Activities</h2>
+      <div class="gallery">
+        <img src="oracle.jpg" alt="" />
+        <img src="CCNA-_Introduction_to_Networks.jpg" alt="" />
+        <img
+          src="CCNA-_Switching-_Routing-_and_Wireless_Essentials.jpg"
+          alt=""
+        />
+        <img src="oracle2025.jpg" alt="" />
+        <img src="Hackathon.jpg" alt="" />
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2026 Adittya Alyandra | Portfolio Sistem Informasi</p>
+    </footer>
+
+    <!-- SCROLL TO TOP -->
+    <button
+      id="scrollTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      ↑
+    </button>
+
+    <script>
+      // Navbar: active link on scroll + style change
+      const navLinks = document.querySelectorAll(".navbar a");
+      const sections = [...navLinks].map((a) =>
+        document.querySelector(a.getAttribute("href")),
+      );
+
+      function updateNav() {
+        const pos = window.scrollY + window.innerHeight * 0.35;
+        let current = 0;
+        sections.forEach((sec, i) => {
+          if (sec && sec.offsetTop <= pos) current = i;
+        });
+        navLinks.forEach((a, i) => a.classList.toggle("active", i === current));
+        document
+          .getElementById("navbar")
+          .classList.toggle("scrolled", window.scrollY > 40);
+      }
+
+      // Scroll to top button
+      window.addEventListener("scroll", () => {
+        const btn = document.getElementById("scrollTop");
+        btn.classList.toggle("show", window.scrollY > 400);
+        updateNav();
+      });
+      // Hero: efek mengetik untuk peran
+      (function () {
+        const el = document.getElementById("typed");
+        if (
+          !el ||
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        )
+          return;
+        const roles = [
+          "Web Developer",
+          "Mobile Developer",
+          "UI/UX Designer",
+          "Mahasiswa Sistem Informasi",
+        ];
+        let r = 0,
+          i = roles[0].length,
+          deleting = true;
+        function tick() {
+          const word = roles[r];
+          el.textContent = word.slice(0, i);
+          let delay = deleting ? 45 : 85;
+          if (!deleting && i === word.length) {
+            deleting = true;
+            delay = 1600;
+          } else if (deleting && i === 0) {
+            deleting = false;
+            r = (r + 1) % roles.length;
+            delay = 300;
+          } else {
+            i += deleting ? -1 : 1;
+          }
+          setTimeout(tick, delay);
+        }
+        setTimeout(tick, 1800);
+      })();
+
+      updateNav();
+    </script>
+  </body>
+</html>
